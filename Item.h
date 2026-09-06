@@ -1,20 +1,27 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-class Item : Unit {
+#include "Unit.h"
+#include <string>
+#include "ProssessState"
+
+using namespace std;
+
+class Item : Unit
+{
 
 public:
-	ProcessState* state;
+    ProcessState *state;
 
-	double getWeight();
+    double getWeight();
 
-	string inspect();
+    string inspect();
 
-	void advance();
+    void advance();
 
-	string getStatus();
+    string getStatus();
 
-	void setState(ProcessState* state);
+    void setState(ProcessState *state);
 };
 
 #endif

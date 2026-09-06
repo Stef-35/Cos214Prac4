@@ -1,20 +1,48 @@
 #ifndef UNITGROUP_H
 #define UNITGROUP_H
 
-class Unitgroup : Unit {
+#include "Unit.h"
+#include <string>
+#include "ProssessState"
+#include <vector>
+
+class Unitgroup : public Unit
+{
+private:
+	vector<Unit *> children;
 
 public:
-	Unit children;
+	virtual bool add(Unit *unit) = 0;
 
-	virtual bool add(Unit* unit) = 0;
-
-	virtual bool remove(Unit* unit) = 0;
+	virtual bool remove(Unit *unit) = 0;
 
 	double getWeight();
 
 	UnitIterator createIterator();
 
-	virtual void ~UnitGroup() = 0;
+	virtual ~UnitGroup();
+};
+
+class Palette : Unitgroup
+{
+private:
+	ProcessState *state;
+
+public:
+	bool add(Unit *unit);
+
+	void advance();
+
+	string getStatus();
+
+	void setState(ProcessState *state);
+};
+
+class Container : Unitgroup
+{
+
+public:
+	bool add(Unit *unit);
 };
 
 #endif
