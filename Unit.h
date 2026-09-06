@@ -20,7 +20,7 @@ public:
 
 	virtual string getId() = 0;
 
-	virtual UnitIterator createIterator() = 0;
+	virtual UnitIterator *createIterator() = 0;
 
 	virtual ~Unit() = 0;
 };

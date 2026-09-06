@@ -18,9 +18,9 @@ public:
 
 	double getWeight();
 
-	UnitIterator createIterator();
+	UnitIterator *createIterator();
 
-	virtual ~UnitGroup();
+	virtual ~Unitgroup();
 };
 
 class Palette : Unitgroup
