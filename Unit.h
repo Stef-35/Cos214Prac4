@@ -1,7 +1,13 @@
 #ifndef UNIT_H
 #define UNIT_H
 
-class Unit {
+#include "UnitIterator.h"
+#include <string>
+
+using namespace std;
+
+class Unit
+{
 
 private:
 	double weight;
@@ -16,7 +22,7 @@ public:
 
 	virtual UnitIterator createIterator() = 0;
 
-	virtual void ~Unit() = 0;
+	virtual ~Unit() = 0;
 };
 
 #endif
