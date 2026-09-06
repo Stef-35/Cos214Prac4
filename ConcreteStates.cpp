@@ -23,3 +23,20 @@ bool Inspect::passedInspection() const {
         return passed;
 }
 
+// Load State
+Load::Load(bool drop) : accidentalDrop(drop) {}
+
+void Load::advance(Unit* unit) {
+    if (accidentalDrop){
+        std::cout << "[Load -> Dropped] Accidental drop during loading!\n";
+        unit->setState(new Dropped(false));
+    } else {
+        std::cout << "[Load -> Ship] Load complete. Dispatching...\n";
+        unit->setState(new Ship());
+    }
+}
+
+std::string Load::getName() const {
+    return "Load";
+}
+

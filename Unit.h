@@ -1,8 +1,11 @@
 #ifndef UNIT_H
 #define UNIT_H
 
-#include "UnitIterator.h"
+
 #include <string>
+
+class UnitIterator;
+class ProcessState;
 
 using namespace std;
 
@@ -24,7 +27,7 @@ public:
 
 	virtual ~Unit() = 0;
 
-	virtual void setState(ProcessState* newState) = 0;
+	virtual void setState(ProcessState* state) = 0;
 };
 
 #endif

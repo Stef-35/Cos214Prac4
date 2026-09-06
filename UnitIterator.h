@@ -1,6 +1,8 @@
 #ifndef UNITITERATOR_H
 #define UNITITERATOR_H
 
+#include "Unit.h"
+
 class UnitIterator {
 
 
