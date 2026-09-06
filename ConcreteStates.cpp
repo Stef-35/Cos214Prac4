@@ -56,5 +56,23 @@ std::string Ship::getName() const {
     return "Ship";
 }
 
+// Dropped State
+Dropped::Dropped(bool repairable) : repairable(repairable) {}
 
+void Dropped::advance(Unit* unit){
+    if(this->repairable){
+        std::cout << "[Dropped -> Inspect] Item is repairable. Re-inspecting goods...\n";
+        unit->setState(new Inspect());
+    } else {
+        std::cout << "[Dropped -> Scrapped] Item is not repairable. Item scrapped!\n";
+    }
+}
+
+std::string Dropped::getName() const {
+    return "Dropped";
+}
+
+bool Dropped::isRepairable() const {
+    return repairable;
+}
 
