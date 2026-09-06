@@ -13,7 +13,7 @@ public:
 
 	virtual Unit* currentItem() = 0;
 
-	virtual void ~UnitIterator() = 0;
+	virtual ~UnitIterator() = 0;
 };
 
 #endif

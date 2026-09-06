@@ -23,6 +23,8 @@ public:
 	virtual UnitIterator *createIterator() = 0;
 
 	virtual ~Unit() = 0;
+
+	virtual void setState(ProcessState* newState) = 0;
 };
 
 #endif

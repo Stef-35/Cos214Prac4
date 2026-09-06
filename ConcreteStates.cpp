@@ -10,16 +10,16 @@ void Inspect::advance(Unit* unit) {
         std::cout << "[Inspect -> Load] Check complete. Loading goods...\n";
         unit->setState(new Load());
     } else {
-        std::cout << "[Inspect -> Dropped]" Check complete. Dropping goods...\n";
+        std::cout << "[Inspect -> Dropped] Check complete. Dropping goods...\n";
         unit->setState(new Dropped(true));
     }
 }
 
 std::string Inspect::getName() const {
-        return "Inspect"
+        return "Inspect";
 }
 
 bool Inspect::passedInspection() const {
-        return passed
+        return passed;
 }
 
