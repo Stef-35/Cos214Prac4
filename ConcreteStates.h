@@ -22,5 +22,15 @@ class Load : public ProcessState {
         std::string getName() const override;
 };
 
+class Ship : public ProcessState {
+    private:
+        bool accidentalDrop;
+        bool deliveryConfirmed;
+    public:
+        Ship(bool drop = false, bool confirmed = true) : accidentalDrop(drop), deliveryConfirmed(confirmed){}
+        void advance(Unit* unit) override;
+        std::string getName() const override;
+};
+
 
 #endif
