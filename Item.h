@@ -3,11 +3,11 @@
 
 #include "Unit.h"
 #include <string>
-#include "ProssessState"
+#include "ProcessState.h"
 
 using namespace std;
 
-class Item : Unit
+class Item : public Unit
 {
 
 public:

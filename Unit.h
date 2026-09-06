@@ -9,18 +9,21 @@ using namespace std;
 class Unit
 {
 
-private:
+protected:
 	double weight;
 	string id;
 
 public:
+	Unit(double w, string i) : weight(w), id(i) {};
+
 	virtual double getWeight() = 0;
 
 	virtual string inspect() = 0;
 
 	virtual string getId() = 0;
 
-	virtual UnitIterator *createIterator() = 0;
+	virtual UnitIterator *createDepthFirstIterator() = 0;
+	virtual UnitIterator *createBreadthFirstIterator() = 0;
 
 	virtual ~Unit() = 0;
 };

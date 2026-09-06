@@ -2,24 +2,35 @@
 
 double Unitgroup::getWeight()
 {
-	// TODO - implement Unitgroup::getWeight
-	throw "Not yet implemented";
+	double total = 0;
+	for (Unit *child : children)
+	{
+		total += child->getWeight();
+	}
+	return total;
 }
 
-UnitIterator *Unitgroup::createIterator()
+UnitIterator *Unitgroup::createDepthFirstIterator()
 {
-	// TODO - implement Unitgroup::createIterator
-	throw "Not yet implemented";
+	return new DepthFirstIterator();
+}
+
+UnitIterator *Unitgroup::createBreadthFirstIterator()
+{
+	return new BreadthFirstIterator();
 }
 
 Unitgroup::~Unitgroup()
 {
+	for (Unit *child : children)
+	{
+		delete child;
+	}
 }
 
 bool Palette::add(Unit *unit)
 {
-	// TODO - implement Palette::add
-	throw "Not yet implemented";
+	
 }
 
 void Palette::advance()

@@ -2,8 +2,7 @@
 
 double Item::getWeight()
 {
-	// TODO - implement Item::getWeight
-	throw "Not yet implemented";
+	return weight;
 }
 
 string Item::inspect()
