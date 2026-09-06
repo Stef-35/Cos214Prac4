@@ -13,6 +13,14 @@ class Inspect : public ProcessState {
         bool passedInspection() const override;
 };
 
+class Load : public ProcessState {
+    private:
+        bool accidentalDrop;
+    public:
+        Load(bool drop = false) : accidentalDrop(drop) {}
+        void advance(Unit* unit) override;
+        std::string getName() const override;
+};
 
 
 #endif
