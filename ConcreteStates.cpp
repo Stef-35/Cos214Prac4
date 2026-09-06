@@ -40,3 +40,21 @@ std::string Load::getName() const {
     return "Load";
 }
 
+// Ship State
+Ship::Ship(bool drop, bool confirmed) : accidentalDrop(drop), deliveryConfirmed(confirmed) {}
+
+void Ship::advance(Unit* unit) {
+    if (accidentalDrop) {
+        std::cout << "[Ship -> Dropped] Accidental drop during transit!\n";
+        unit->setState(new Dropped(true));
+    } else if (deliveryConfirmed) {
+        std::cout << "[Ship -> Delivered] Confirm Delivery. Terminal state reached.\n";
+    }
+}
+
+std::string Ship::getName() const {
+    return "Ship";
+}
+
+
+
