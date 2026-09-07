@@ -3,8 +3,8 @@ CXXFLAGS:= -Wall -Wextra -std=c++11 -g
 
 TARGET	:= taskforge
 
-SRCS	:= main.cpp Unitgroup.cpp Item.cpp ConcreteStates.cpp DepthFirstIterator.cpp \
-			BreadthFirstIterator.cpp Iteratortesting.cpp Faulty.cpp Fragile.cpp \
+SRCS	:= main.cpp Unitgroup.cpp Item.cpp ConcreteState.cpp DepthFirstIterator.cpp \
+			BreadthFirstIterator.cpp IteratorTesting.cpp Faulty.cpp Fragile.cpp \
 			Hazardous.cpp UnitDecorator.cpp DecoratorTesting.cpp
 OBJS	:= $(SRCS:.cpp=.o)
 
