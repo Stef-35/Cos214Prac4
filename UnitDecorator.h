@@ -16,7 +16,9 @@ public:
     double getWeight() const override;
     virtual std::string inspect() override;
     bool hasLabel(const string &label) const override;
-    virtual ~UnitDecorator() {}
+    virtual ~UnitDecorator() {
+        delete unit;
+    }
 
 
 	UnitIterator* createDepthFirstIterator() override { return nullptr; }

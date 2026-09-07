@@ -5,7 +5,7 @@
 #include "Hazardous.h"
 #include "Faulty.h"
 
-int main() {
+void DecoratorTesting() {
     std::cout << "=== Decorator Pattern Testing ===\n\n";
     
     // Create a base item
@@ -41,6 +41,5 @@ int main() {
     
     // Clean up
     delete palette;
-    
-    return 0;
+
 }
