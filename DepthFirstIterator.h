@@ -9,7 +9,7 @@ class DepthFirstIterator : public UnitIterator
 {
 
 private:
-	stack<Unit *> stack;
+	std::stack<Unit *> stack;
 	Unit *curr;
 	Unit *lookup;
 

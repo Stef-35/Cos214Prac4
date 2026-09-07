@@ -9,8 +9,9 @@ class BreadthFirstIterator : public UnitIterator
 {
 
 private:
-	queue<Unit *> queue;
+	std::queue<Unit *> queue;
 	Unit *curr;
+	Unit *lookup;
 
 public:
 	BreadthFirstIterator(Unit *rootUnit);
