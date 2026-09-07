@@ -13,6 +13,7 @@ private:
 	Unit *curr;
 
 public:
+	BreadthFirstIterator(Unit *rootUnit);
 	void first();
 
 	void next();

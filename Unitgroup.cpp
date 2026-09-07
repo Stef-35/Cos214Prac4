@@ -58,8 +58,9 @@ bool Palette::add(Unit *unit)
 
 void Palette::advance()
 {
-	if (state){
-	state->advance(this);
+	if (state)
+	{
+		state->advance(this);
 	}
 }
 
