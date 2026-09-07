@@ -1,4 +1,5 @@
 #include "Unitgroup.h"
+#include <iostream>
 
 double Unitgroup::getWeight() const
 {
@@ -54,6 +55,28 @@ bool Palette::add(Unit *unit)
 	}
 	children.push_back(unit);
 	return true;
+}
+
+void Palette::inspectChildren()
+{
+	UnitIterator *it = createDepthFirstIterator();
+
+	for (it->first(); !it->isDone(); it->next())
+	{
+		Unit *u = it->currentItem();
+
+		std::cout << u->getId() << ": " << u->inspect() << "\n";
+
+		if (u->hasLabel("Faulty"))
+		{
+			remove(u);
+			u->setState(new Dropped(true));
+			std::cout << "  -> Removed and marked Dropped (faulty)\n";
+		}
+	}
+
+	delete it;
+	advance();
 }
 
 void Palette::advance()
