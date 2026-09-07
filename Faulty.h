@@ -1,13 +1,15 @@
 #ifndef FAULTY_H
 #define FAULTY_H
 
-class Faulty : UnitDecorator {
+#include <string>
+#include "UnitDecorator.h"
 
-
+class Faulty : public UnitDecorator {
 public:
-	double getWeight();
-
-	string inspect();
+    Faulty(Unit* u) : UnitDecorator(u) {}
+    double getWeight() const override;
+    bool hasLabel(const string &label) const override;
+    string inspect() override;
 };
 
 #endif

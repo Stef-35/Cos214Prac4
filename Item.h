@@ -1,20 +1,34 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-class Item : Unit {
+#include "Unit.h"
+#include <string>
+#include "ProcessState.h"
+#include "ConcreteState.h"
+
+using namespace std;
+
+class Item : public Unit
+{
+private:
+    ProcessState *state;
 
 public:
-	ProcessState* state;
+    Item(double w, string i) : Unit(w, i), state(new Inspect()) {};
+    double getWeight() const override;
 
-	double getWeight();
+    string inspect() override;
 
-	string inspect();
+    void advance();
 
-	void advance();
+    std::string getStatus() const;
 
-	string getStatus();
+    void setState(ProcessState *state) override;
 
-	void setState(ProcessState* state);
+    UnitIterator *createDepthFirstIterator() override { return nullptr; }
+    UnitIterator *createBreadthFirstIterator() override { return nullptr; }
+
+    ~Item();
 };
 
 #endif

@@ -1,11 +1,16 @@
 #include "Faulty.h"
 
-double Faulty::getWeight() {
-	// TODO - implement Faulty::getWeight
-	throw "Not yet implemented";
+double Faulty::getWeight() const
+{
+    return unit->getWeight();
 }
 
-string Faulty::inspect() {
-	// TODO - implement Faulty::inspect
-	throw "Not yet implemented";
+string Faulty::inspect()
+{
+    return "Faulty[" + unit->inspect() + "]";
+}
+
+bool Faulty::hasLabel(const string &label) const
+{
+    return label == "Faulty" || unit->hasLabel(label);
 }

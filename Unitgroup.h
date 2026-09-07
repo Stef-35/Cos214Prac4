@@ -1,20 +1,65 @@
 #ifndef UNITGROUP_H
 #define UNITGROUP_H
 
-class Unitgroup : Unit {
+#include "Unit.h"
+#include <string>
+#include "ProcessState.h"
+#include <vector>
+#include "UnitIterator.h"
+#include "DepthFirstIterator.h"
+#include "BreadthFirstIterator.h"
+#include "ConcreteState.h"
+
+class Unitgroup : public Unit
+{
+protected:
+	std::vector<Unit *> children;
 
 public:
-	Unit children;
+	Unitgroup(double w, string i) : Unit(w, i) {};
+	virtual bool add(Unit *unit) = 0;
 
-	virtual bool add(Unit* unit) = 0;
+	virtual bool remove(Unit *unit);
 
-	virtual bool remove(Unit* unit) = 0;
+	double getWeight() const override;
+	std::string inspect() override;
 
-	double getWeight();
+	UnitIterator *createDepthFirstIterator() override;
+	UnitIterator *createBreadthFirstIterator() override;
 
-	UnitIterator createIterator();
+	const std::vector<Unit*>& getChildren() const { return children; }
 
-	virtual void ~UnitGroup() = 0;
+	virtual ~Unitgroup();
+};
+
+class Palette : public Unitgroup
+{
+private:
+	ProcessState *state;
+
+public:
+	Palette(double w, string i) : Unitgroup(w, i), state(new Inspect()) {};
+
+	bool add(Unit *unit) override;
+
+	void inspectChildren();
+
+	void advance();
+
+	string getStatus() const;
+
+	void setState(ProcessState *state) override;
+
+	~Palette();
+};
+
+class Container : public Unitgroup
+{
+
+public:
+	Container(double w, string i) : Unitgroup(w, i) {};
+	bool add(Unit *unit);
+	~Container();
 };
 
 #endif

@@ -1,22 +1,37 @@
 #ifndef UNIT_H
 #define UNIT_H
 
-class Unit {
+#include <string>
 
-private:
+class UnitIterator;
+class ProcessState;
+
+using namespace std;
+
+class Unit
+{
+
+protected:
 	double weight;
 	string id;
 
 public:
-	virtual double getWeight() = 0;
+	Unit(double w, string i) : weight(w), id(i) {};
+
+	virtual double getWeight() const = 0;
 
 	virtual string inspect() = 0;
 
-	virtual string getId() = 0;
+	virtual string getId() const { return id; }
 
-	virtual UnitIterator createIterator() = 0;
+	virtual void setState(ProcessState*) {}
 
-	virtual void ~Unit() = 0;
+	virtual bool hasLabel(const string&) const { return false; }
+
+	virtual UnitIterator *createDepthFirstIterator() = 0;
+	virtual UnitIterator *createBreadthFirstIterator() = 0;
+
+	virtual ~Unit() {};
 };
 
 #endif

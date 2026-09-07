@@ -1,13 +1,14 @@
 #ifndef FRAGILE_H
 #define FRAGILE_H
 
-class Fragile : UnitDecorator {
+#include "UnitDecorator.h"
+#include <string>
 
-
+class Fragile : public UnitDecorator {
 public:
-	double getWeight();
-
-	string inspect();
+    Fragile(Unit* u) : UnitDecorator(u) {}
+    double getWeight() const override;
+    string inspect() override;
 };
 
 #endif

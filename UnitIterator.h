@@ -1,19 +1,21 @@
 #ifndef UNITITERATOR_H
 #define UNITITERATOR_H
 
-class UnitIterator {
+class Unit;
 
+class UnitIterator
+{
 
 public:
 	virtual void first() = 0;
 
 	virtual void next() = 0;
 
-	virtual void isDone() = 0;
+	virtual bool isDone()  = 0;
 
-	virtual Unit* currentItem() = 0;
+	virtual Unit *currentItem()  = 0;
 
-	virtual void ~UnitIterator() = 0;
+	virtual ~UnitIterator() {};
 };
 
 #endif

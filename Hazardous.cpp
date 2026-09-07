@@ -1,11 +1,9 @@
 #include "Hazardous.h"
 
-double Hazardous::getWeight() {
-	// TODO - implement Hazardous::getWeight
-	throw "Not yet implemented";
+double Hazardous::getWeight() const {
+    return unit->getWeight();
 }
 
 string Hazardous::inspect() {
-	// TODO - implement Hazardous::inspect
-	throw "Not yet implemented";
+    return "Hazardous[" + unit->inspect() + "]";
 }
