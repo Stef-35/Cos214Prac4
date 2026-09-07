@@ -54,6 +54,7 @@ class Container : Unitgroup
 public:
 	Container(double w, string i) : Unitgroup(w, i) {};
 	bool add(Unit *unit);
+	~Container();
 };
 
 #endif
