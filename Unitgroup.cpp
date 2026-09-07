@@ -30,29 +30,44 @@ Unitgroup::~Unitgroup()
 
 bool Palette::add(Unit *unit)
 {
-	
+	if (unit == NULL)
+	{
+		return false;
+	}
+	children.push_back(unit);
+	return true;
 }
 
 void Palette::advance()
 {
-	// TODO - implement Palette::advance
-	throw "Not yet implemented";
+	state->advance(this);
 }
 
 string Palette::getStatus()
 {
-	// TODO - implement Palette::getStatus
-	throw "Not yet implemented";
+	return state->getName();
 }
 
 void Palette::setState(ProcessState *state)
 {
-	// TODO - implement Palette::setState
-	throw "Not yet implemented";
+	if (state != NULL)
+	{
+		delete this->state;
+		this->state = state;
+	}
+}
+
+Palette::~Palette()
+{
+	delete state;
 }
 
 bool Container::add(Unit *unit)
 {
-	// TODO - implement Container::add
-	throw "Not yet implemented";
+	if (unit == NULL)
+	{
+		return false;
+	}
+	children.push_back(unit);
+	return true;
 }

@@ -8,10 +8,11 @@
 #include "UnitIterator.h"
 #include "DepthFirstIterator.h"
 #include "BreadthFirstIterator.h"
+#include "ConcreteStates.h"
 
 class Unitgroup : public Unit
 {
-private:
+protected:
 	vector<Unit *> children;
 
 public:
@@ -34,6 +35,8 @@ private:
 	ProcessState *state;
 
 public:
+	Palette(double w, string i) : Unitgroup(w, i), state(new Inspect()) {};
+
 	bool add(Unit *unit);
 
 	void advance();
@@ -41,12 +44,15 @@ public:
 	string getStatus();
 
 	void setState(ProcessState *state);
+
+	~Palette();
 };
 
 class Container : Unitgroup
 {
 
 public:
+	Container(double w, string i) : Unitgroup(w, i) {};
 	bool add(Unit *unit);
 };
 
