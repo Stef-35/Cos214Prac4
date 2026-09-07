@@ -10,6 +10,24 @@ double Unitgroup::getWeight()
 	return total;
 }
 
+bool Unitgroup::remove(Unit *unit)
+{
+	for (vector<Unit *>::iterator it = children.begin(); it != children.end(); ++it)
+	{
+		if (*it == unit)
+		{
+			children.erase(it);
+			return true;
+		}
+	}
+	return false;
+}
+
+string Unitgroup::inspect()
+{
+	return "Group " + id + " weight=" + to_string(getWeight());
+}
+
 UnitIterator *Unitgroup::createDepthFirstIterator()
 {
 	return new DepthFirstIterator();
@@ -71,3 +89,5 @@ bool Container::add(Unit *unit)
 	children.push_back(unit);
 	return true;
 }
+
+Container::~Container() {}

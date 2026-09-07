@@ -22,6 +22,7 @@ public:
 	virtual bool remove(Unit *unit);
 
 	double getWeight();
+	string inspect();
 
 	UnitIterator *createDepthFirstIterator();
 	UnitIterator *createBreadthFirstIterator();
