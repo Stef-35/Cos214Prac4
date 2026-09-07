@@ -71,7 +71,7 @@ void Palette::inspectChildren()
 		{
 			remove(u);
 			u->setState(new Dropped(true));
-			std::cout << "  -> Removed and marked Dropped (faulty)\n";
+			std::cout << "  -> Removed from Palette (faulty)\n";
 		}
 	}
 

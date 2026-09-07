@@ -22,9 +22,11 @@ public:
 
 	virtual string inspect() = 0;
 
-	virtual string getId() const {return id;}
+	virtual string getId() const { return id; }
 
-	virtual void setState(ProcessState* state){}
+	virtual void setState(ProcessState *state) {}
+
+	virtual bool hasLabel(const string &label) const { return false; }
 
 	virtual UnitIterator *createDepthFirstIterator() = 0;
 	virtual UnitIterator *createBreadthFirstIterator() = 0;
