@@ -4,7 +4,7 @@
 #include "DepthFirstIterator.h"
 #include "BreadthFirstIterator.h"
 
-int main() {
+void IteratorsTesting() {
     Container* root = new Container(100, "root");
     
     Item* item1 = new Item(10, "item1");
@@ -46,6 +46,4 @@ int main() {
     delete bfIt;
     
     delete root;
-    
-    return 0;
 }
