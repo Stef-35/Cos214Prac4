@@ -199,5 +199,134 @@ int main() {
     testStates();
     testCombined();
 
+    Container* rootContainer = new Container(50.0, "Root-Container-01");
+    Palette* activePalette = nullptr;
+
+    int choice = 0;
+    while (choice != 7){
+        cout << "\n     TASKFORGE LOGISTICS CLI SYSTEM      \n\n";
+        cout << " 1. Create & Attach Palette to Root Container\n";
+        cout << " 2. Add Decorated Item to Active Palette\n";
+        cout << " 3. Traverse Hierachy (Depth-First Search)\n";
+        cout << " 4. Traverse Hierachy (Breadth-First Search)\n";
+        cout << " 5. Inspect Active Palette (Filter Faulty)\n";
+        cout << " 6. Advance Active Palette State\n";
+        cout << " 7. Exit System\n";
+        cout << "Select Choice (1-7): ";
+
+        if (!(cin >> choice)){
+            cin.clear();
+            cin.ignore(10000, '\n');
+            continue;
+        }
+        switch (choice){
+            case 1: {
+                string id;
+                double weight;
+                cout << "Enter Palette ID: ";
+                cin >> id;
+                cout << "Enter Base Palette Weight: ";
+                cin >> weight;
+
+                activePalette = new Palette(weight, id);
+                rootContainer->add(activePalette);
+                cout << ">> Palette " << id << " created and added to " << rootContainer->getId() << "!\n";
+                break;
+            }
+            case 2: {
+                if (!activePalette){
+                    cout << ">> No active palette! Please create one first (Option 1).\n";
+                    break;
+                }
+                 string id;
+                double weight;
+                cout << "Enter Palette ID: ";
+                cin >> id;
+                cout << "Enter Base Palette Weight: ";
+                cin >> weight;
+
+                Unit* item = new Item(weight, id);
+                int decChoice = -1;
+                while (decChoice != 0){
+                    cout << "Apply Decorator to " << item->getId() << "?\n";
+                    cout << "  1. Fragile\n";
+                    cout << "  2. Hazardous\n";
+                    cout << "  3. Faulty\n";
+                    cout << "  0. Done Decorating\n";
+                    cout << "  Choice: ";
+
+                    if (!(cin >> decChoice)) {
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+                        continue;
+                    }
+
+                    if (decChoice == 1) item = new Fragile(item);
+                    else if (decChoice == 2) item = new Hazardous(item);
+                    else if (decChoice == 3) item = new Faulty(item);
+                }
+                activePalette->add(item);
+                cout << ">> Item " << id << " added to active palette!\n";
+                break;
+            }
+            case 3: {
+                cout << "\n     Depth-First Traversal       \n";
+                UnitIterator* it = rootContainer->createDepthFirstIterator();
+                for (it->first(); !it->isDone(); it->next()) {
+                    Unit* u = it->currentItem();
+                    if (u) {
+                        cout << " [Unit ID: " << u->getId() 
+                             << " | Weight: " << u->getWeight() 
+                             << " | Inspect: " << u->inspect() << "]\n";
+                    }
+                }
+                delete it;
+                break;
+            }
+            case 4: {
+                cout << "\n     Breadth-First Traversal     \n";
+                UnitIterator* it = rootContainer->createBreadthFirstIterator();
+                for (it->first(); !it->isDone(); it->next()) {
+                    Unit* u = it->currentItem();
+                    if (u) {
+                        cout << " [Unit ID: " << u->getId() 
+                             << " | Weight: " << u->getWeight() 
+                             << " | Inspect: " << u->inspect() << "]\n";
+                    }
+                }
+                delete it;
+                break;
+            }
+            case 5: {
+                if (!activePalette) {
+                    cout << ">> No active palette to inspect!\n";
+                    break;
+                }
+                cout << "\n     Inspecting Active Palette       \n";
+                cout << "Current State: " << activePalette->getStatus() << "\n";
+                activePalette->inspectChildren();
+                cout << "Updated State: " << activePalette->getStatus() << "\n";
+                break;
+            }
+            case 6: {
+                if (!activePalette) {
+                    cout << ">> No active palette selected!\n";
+                    break;
+                }
+                cout << "\n     Advancing Palette State     \n";
+                cout << "State before advance: " << activePalette->getStatus() << "\n";
+                activePalette->advance();
+                cout << "State after advance: " << activePalette->getStatus() << "\n";
+                break;
+            }
+            case 7:
+                cout << "Exiting TaskForge system...\n";
+                break; 
+            default:
+                cout << "Invalid choice. Please pick between 1 and 7.\n";
+                break;
+        }
+    }
+    delete rootContainer;
     return 0;
 }
