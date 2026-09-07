@@ -1,16 +1,19 @@
 #ifndef UNITDECORATOR_H
 #define UNITDECORATOR_H
 
-class UnitDecorator : Unit {
+#include "Unit.h"
+#include <string>
+
+class UnitDecorator :public Unit {
 
 public:
 	Unit* unit;
 
 	double getWeight();
 
-	virtual string inspect() = 0;
+	virtual std::string inspect() = 0;
 
-	virtual void ~UnitDecorator() = 0;
+	virtual ~UnitDecorator() = 0;
 };
 
 #endif

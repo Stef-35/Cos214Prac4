@@ -21,7 +21,7 @@ public:
 
     void advance();
 
-    string getStatus();
+    std::string getStatus() const;
 
     void setState(ProcessState *state);
 

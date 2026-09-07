@@ -15,7 +15,7 @@ void Item::advance()
 	state->advance(this);
 }
 
-string Item::getStatus()
+string Item::getStatus() const
 {
 	return state->getName();
 }

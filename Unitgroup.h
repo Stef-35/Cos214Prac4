@@ -13,7 +13,7 @@
 class Unitgroup : public Unit
 {
 protected:
-	vector<Unit *> children;
+	std::vector<Unit *> children;
 
 public:
 	Unitgroup(double w, string i) : Unit(w, i) {};
@@ -30,7 +30,7 @@ public:
 	virtual ~Unitgroup();
 };
 
-class Palette : Unitgroup
+class Palette : public Unitgroup
 {
 private:
 	ProcessState *state;
@@ -49,7 +49,7 @@ public:
 	~Palette();
 };
 
-class Container : Unitgroup
+class Container : public Unitgroup
 {
 
 public:

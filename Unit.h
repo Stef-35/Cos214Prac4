@@ -1,8 +1,10 @@
 #ifndef UNIT_H
 #define UNIT_H
 
-#include "UnitIterator.h"
 #include <string>
+
+class UnitIterator;
+class ProcessState;
 
 using namespace std;
 
@@ -20,7 +22,9 @@ public:
 
 	virtual string inspect() = 0;
 
-	virtual string getId() = 0;
+	virtual string getId() const {return id;}
+
+	virtual void setState(ProcessState* state){}
 
 	virtual UnitIterator *createDepthFirstIterator() = 0;
 	virtual UnitIterator *createBreadthFirstIterator() = 0;
