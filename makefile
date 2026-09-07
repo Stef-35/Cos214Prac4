@@ -1,7 +1,7 @@
 CXX		:= g++
 CXXFLAGS:= -Wall -Wextra -std=c++11 -g
 
-TARGET	:= main
+TARGET	:= taskforge
 
 SRCS	:= main.cpp Unitgroup.cpp Item.cpp ConcreteStates.cpp DepthFirstIterator.cpp \
 			BreadthFirstIterator.cpp Iteratortesting.cpp Faulty.cpp Fragile.cpp \
