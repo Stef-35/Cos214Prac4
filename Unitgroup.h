@@ -40,6 +40,8 @@ public:
 
 	bool add(Unit *unit) override;
 
+	void inspectChildren();
+
 	void advance();
 
 	string getStatus() const;
