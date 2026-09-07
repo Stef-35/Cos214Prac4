@@ -18,7 +18,7 @@ protected:
 public:
 	Unit(double w, string i) : weight(w), id(i) {};
 
-	virtual double getWeight() = 0;
+	virtual double getWeight() const = 0;
 
 	virtual string inspect() = 0;
 

@@ -10,7 +10,7 @@ void BreadthFirstIterator::next() {
 	throw "Not yet implemented";
 }
 
-void BreadthFirstIterator::isDone() {
+bool BreadthFirstIterator::isDone() {
 	// TODO - implement BreadthFirstIterator::isDone
 	throw "Not yet implemented";
 }

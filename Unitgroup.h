@@ -21,11 +21,11 @@ public:
 
 	virtual bool remove(Unit *unit);
 
-	double getWeight();
-	string inspect();
+	double getWeight() const override;
+	std::string inspect() override;
 
-	UnitIterator *createDepthFirstIterator();
-	UnitIterator *createBreadthFirstIterator();
+	UnitIterator *createDepthFirstIterator() override;
+	UnitIterator *createBreadthFirstIterator() override;
 
 	virtual ~Unitgroup();
 };
@@ -38,13 +38,13 @@ private:
 public:
 	Palette(double w, string i) : Unitgroup(w, i), state(new Inspect()) {};
 
-	bool add(Unit *unit);
+	bool add(Unit *unit) override;
 
 	void advance();
 
-	string getStatus();
+	string getStatus() const;
 
-	void setState(ProcessState *state);
+	void setState(ProcessState *state) override;
 
 	~Palette();
 };

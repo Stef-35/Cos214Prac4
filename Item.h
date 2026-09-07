@@ -15,15 +15,18 @@ private:
 
 public:
     Item(double w, string i) : Unit(w, i), state(new Inspect) {};
-    double getWeight();
+    double getWeight() const override;
 
-    string inspect();
+    string inspect() override;
 
     void advance();
 
     std::string getStatus() const;
 
-    void setState(ProcessState *state);
+    void setState(ProcessState *state) override;
+
+    UnitIterator* createDepthFirstIterator() override { return nullptr;}
+    UnitIterator* createBreadthFirstIterator() override {return nullptr;}
 
     ~Item();
 };

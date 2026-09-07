@@ -1,7 +1,6 @@
 #include "Unitgroup.h"
-#include "DepthFirstIterator.h"
 
-double Unitgroup::getWeight()
+double Unitgroup::getWeight() const
 {
 	double total = 0;
 	for (Unit *child : children)
@@ -31,12 +30,12 @@ string Unitgroup::inspect()
 
 UnitIterator *Unitgroup::createDepthFirstIterator()
 {
-	return new DepthFirstIterator();
+	return new DepthFirstIterator(this);
 }
 
 UnitIterator *Unitgroup::createBreadthFirstIterator()
 {
-	return new BreadthFirstIterator();
+	return new BreadthFirstIterator(this);
 }
 
 Unitgroup::~Unitgroup()
@@ -59,12 +58,14 @@ bool Palette::add(Unit *unit)
 
 void Palette::advance()
 {
+	if (state){
 	state->advance(this);
+	}
 }
 
-string Palette::getStatus()
+string Palette::getStatus() const
 {
-	return state->getName();
+	return state ? state->getName() : "Unknown";
 }
 
 void Palette::setState(ProcessState *state)

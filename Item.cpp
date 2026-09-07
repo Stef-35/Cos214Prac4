@@ -1,6 +1,6 @@
 #include "Item.h"
 
-double Item::getWeight()
+double Item::getWeight() const
 {
 	return weight;
 }
@@ -12,12 +12,15 @@ string Item::inspect()
 
 void Item::advance()
 {
+	if (state)
+	{
 	state->advance(this);
+	}
 }
 
 string Item::getStatus() const
 {
-	return state->getName();
+	return state ? state->getName() : "Unknown";
 }
 
 void Item::setState(ProcessState *state)
