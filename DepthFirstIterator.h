@@ -14,6 +14,7 @@ private:
 	Unit *lookup;
 
 public:
+	DepthFirstIterator(Unit *rootUnit);
 	void first();
 
 	void next();
