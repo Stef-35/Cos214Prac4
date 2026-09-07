@@ -27,6 +27,8 @@ public:
 	UnitIterator *createDepthFirstIterator() override;
 	UnitIterator *createBreadthFirstIterator() override;
 
+	const std::vector<Unit*>& getChildren() const { return children; }
+
 	virtual ~Unitgroup();
 };
 

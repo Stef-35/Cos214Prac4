@@ -31,7 +31,7 @@ public:
 	virtual UnitIterator *createDepthFirstIterator() = 0;
 	virtual UnitIterator *createBreadthFirstIterator() = 0;
 
-	virtual ~Unit() = 0;
+	virtual ~Unit() {};
 };
 
 #endif

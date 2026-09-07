@@ -1,25 +1,59 @@
 #include "DepthFirstIterator.h"
+#include "Unitgroup.h"
+
+DepthFirstIterator::DepthFirstIterator(Unit *rootUnit) : curr(nullptr), lookup(rootUnit)
+{
+    if (rootUnit != nullptr)
+    {
+        stack.push(rootUnit);
+    }
+}
 
 void DepthFirstIterator::first()
 {
-	// TODO - implement  DepthFirstIterator::first
-	throw "Not yet implemented";
+    while (!stack.empty())
+    {
+        stack.pop();
+    }
+
+    if (lookup != nullptr)
+    {
+        stack.push(lookup);
+    }
+    
+    curr = nullptr;
+    next();
 }
 
 void DepthFirstIterator::next()
 {
-	// TODO - implement  DepthFirstIterator::next
-	throw "Not yet implemented";
+    if (stack.empty())
+    {
+        curr = nullptr;
+        return;
+    }
+    
+    curr = stack.top();
+    stack.pop();
+    
+    Unitgroup *group = dynamic_cast<Unitgroup*>(curr);
+    if (group != nullptr)
+    {
+        const std::vector<Unit*>& children = group->getChildren();
+        
+        for (int i = children.size() - 1; i >= 0; i--)
+        {
+            stack.push(children[i]);
+        }
+    }
 }
 
 bool DepthFirstIterator::isDone()
 {
-	// TODO - implement  DepthFirstIterator::isDone
-	throw "Not yet implemented";
+    return curr == nullptr && stack.empty();
 }
 
 Unit *DepthFirstIterator::currentItem()
 {
-	// TODO - implement  DepthFirstIterator::currentItem
-	throw "Not yet implemented";
+    return curr;
 }

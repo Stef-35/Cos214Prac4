@@ -1,21 +1,59 @@
 #include "BreadthFirstIterator.h"
+#include "Unitgroup.h"
 
-void BreadthFirstIterator::first() {
-	// TODO - implement BreadthFirstIterator::first
-	throw "Not yet implemented";
+BreadthFirstIterator::BreadthFirstIterator(Unit *rootUnit) : curr(nullptr), lookup(rootUnit)
+{
+    if (rootUnit != nullptr)
+    {
+        queue.push(rootUnit);
+    }
 }
 
-void BreadthFirstIterator::next() {
-	// TODO - implement BreadthFirstIterator::next
-	throw "Not yet implemented";
+void BreadthFirstIterator::first()
+{
+    while (!queue.empty())
+    {
+        queue.pop();
+    }
+    
+    if (lookup != nullptr)
+    {
+        queue.push(lookup);
+    }
+    
+    curr = nullptr;
+    next();
 }
 
-bool BreadthFirstIterator::isDone() {
-	// TODO - implement BreadthFirstIterator::isDone
-	throw "Not yet implemented";
+void BreadthFirstIterator::next()
+{
+    if (queue.empty())
+    {
+        curr = nullptr;
+        return;
+    }
+    
+    curr = queue.front();
+    queue.pop();
+    
+    Unitgroup *group = dynamic_cast<Unitgroup*>(curr);
+    if (group != nullptr)
+    {
+        const std::vector<Unit*>& children = group->getChildren();
+        
+        for (Unit* child : children)
+        {
+            queue.push(child);
+        }
+    }
 }
 
-Unit* BreadthFirstIterator::currentItem() {
-	// TODO - implement BreadthFirstIterator::currentItem
-	throw "Not yet implemented";
+bool BreadthFirstIterator::isDone()
+{
+    return curr == nullptr && queue.empty();
+}
+
+Unit *BreadthFirstIterator::currentItem()
+{
+    return curr;
 }

@@ -15,7 +15,7 @@ public:
 
 	virtual Unit *currentItem()  = 0;
 
-	virtual ~UnitIterator() = 0;
+	virtual ~UnitIterator() {};
 };
 
 #endif
