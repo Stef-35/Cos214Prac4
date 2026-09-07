@@ -2,46 +2,92 @@
 
 double Unitgroup::getWeight()
 {
-	// TODO - implement Unitgroup::getWeight
-	throw "Not yet implemented";
+	double total = 0;
+	for (Unit *child : children)
+	{
+		total += child->getWeight();
+	}
+	return total;
 }
 
-UnitIterator *Unitgroup::createIterator()
+bool Unitgroup::remove(Unit *unit)
 {
-	// TODO - implement Unitgroup::createIterator
-	throw "Not yet implemented";
+	for (vector<Unit *>::iterator it = children.begin(); it != children.end(); ++it)
+	{
+		if (*it == unit)
+		{
+			children.erase(it);
+			return true;
+		}
+	}
+	return false;
+}
+
+string Unitgroup::inspect()
+{
+	return "Group " + id + " weight=" + to_string(getWeight());
+}
+
+UnitIterator *Unitgroup::createDepthFirstIterator()
+{
+	return new DepthFirstIterator();
+}
+
+UnitIterator *Unitgroup::createBreadthFirstIterator()
+{
+	return new BreadthFirstIterator();
 }
 
 Unitgroup::~Unitgroup()
 {
+	for (Unit *child : children)
+	{
+		delete child;
+	}
 }
 
 bool Palette::add(Unit *unit)
 {
-	// TODO - implement Palette::add
-	throw "Not yet implemented";
+	if (unit == NULL)
+	{
+		return false;
+	}
+	children.push_back(unit);
+	return true;
 }
 
 void Palette::advance()
 {
-	// TODO - implement Palette::advance
-	throw "Not yet implemented";
+	state->advance(this);
 }
 
 string Palette::getStatus()
 {
-	// TODO - implement Palette::getStatus
-	throw "Not yet implemented";
+	return state->getName();
 }
 
 void Palette::setState(ProcessState *state)
 {
-	// TODO - implement Palette::setState
-	throw "Not yet implemented";
+	if (state != NULL)
+	{
+		delete this->state;
+		this->state = state;
+	}
+}
+
+Palette::~Palette()
+{
+	delete state;
 }
 
 bool Container::add(Unit *unit)
 {
-	// TODO - implement Container::add
-	throw "Not yet implemented";
+	if (unit == NULL)
+	{
+		return false;
+	}
+	children.push_back(unit);
+	return true;
 }
+
+Container::~Container() {}

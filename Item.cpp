@@ -2,30 +2,34 @@
 
 double Item::getWeight()
 {
-	// TODO - implement Item::getWeight
-	throw "Not yet implemented";
+	return weight;
 }
 
 string Item::inspect()
 {
-	// TODO - implement Item::inspect
-	throw "Not yet implemented";
+	return "Inspected passed";
 }
 
 void Item::advance()
 {
-	// TODO - implement Item::advance
-	throw "Not yet implemented";
+	state->advance(this);
 }
 
 string Item::getStatus()
 {
-	// TODO - implement Item::getStatus
-	throw "Not yet implemented";
+	return state->getName();
 }
 
 void Item::setState(ProcessState *state)
 {
-	// TODO - implement Item::setState
-	throw "Not yet implemented";
+	if (state != NULL)
+	{
+		delete this->state;
+		this->state = state;
+	}
+}
+
+Item::~Item()
+{
+	delete state;
 }

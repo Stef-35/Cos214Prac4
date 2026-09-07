@@ -3,16 +3,18 @@
 
 #include "Unit.h"
 #include <string>
-#include "ProssessState"
+#include "ProcessState.h"
+#include "ConcreteStates.h"
 
 using namespace std;
 
-class Item : Unit
+class Item : public Unit
 {
-
-public:
+private:
     ProcessState *state;
 
+public:
+    Item(double w, string i) : Unit(w, i), state(new Inspect) {};
     double getWeight();
 
     string inspect();
@@ -22,6 +24,8 @@ public:
     string getStatus();
 
     void setState(ProcessState *state);
+
+    ~Item();
 };
 
 #endif
