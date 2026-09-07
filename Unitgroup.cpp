@@ -1,4 +1,5 @@
 #include "Unitgroup.h"
+#include "DepthFirstIterator.h"
 
 double Unitgroup::getWeight()
 {

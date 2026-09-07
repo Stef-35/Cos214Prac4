@@ -2,6 +2,7 @@
 #define DEPTHFIRSTITERATOR_H
 
 #include "Unit.h"
+#include "UnitIterator.h"
 #include <stack>
 
 class DepthFirstIterator : public UnitIterator
@@ -17,7 +18,7 @@ public:
 
 	void next();
 
-	void isDone();
+	bool isDone();
 
 	Unit *currentItem();
 };

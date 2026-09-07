@@ -1,4 +1,4 @@
-#include " DepthFirstIterator.h"
+#include "DepthFirstIterator.h"
 
 void DepthFirstIterator::first()
 {
@@ -12,7 +12,7 @@ void DepthFirstIterator::next()
 	throw "Not yet implemented";
 }
 
-void DepthFirstIterator::isDone()
+bool DepthFirstIterator::isDone()
 {
 	// TODO - implement  DepthFirstIterator::isDone
 	throw "Not yet implemented";

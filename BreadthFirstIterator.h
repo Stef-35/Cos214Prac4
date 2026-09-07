@@ -2,6 +2,7 @@
 #define BREADTHFIRSTITERATOR_H
 
 #include "Unit.h"
+#include "UnitIterator.h"
 #include <queue>
 
 class BreadthFirstIterator : public UnitIterator
@@ -16,7 +17,7 @@ public:
 
 	void next();
 
-	void isDone();
+	bool isDone();
 
 	Unit *currentItem();
 };

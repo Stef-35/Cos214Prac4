@@ -2,6 +2,7 @@
 #define UNITDECORATOR_H
 
 #include "Unit.h"
+
 #include <string>
 
 class UnitDecorator :public Unit {
