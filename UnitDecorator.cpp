@@ -1,12 +1,16 @@
 #include "UnitDecorator.h"
 
-double UnitDecorator::getWeight()
+double UnitDecorator::getWeight() const
 {
-	// TODO - implement UnitDecorator::getWeight
-	throw "Not yet implemented";
+    return unit->getWeight();
 }
 
-bool UnitDecorator::hasLabel(const string &label)
+bool UnitDecorator::hasLabel(const string &label) const
 {
-	return unit->hasLabel(label);
+    return unit->hasLabel(label);
+}
+
+string UnitDecorator::inspect()
+{
+    return unit->inspect();
 }

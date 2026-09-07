@@ -1,13 +1,14 @@
 #ifndef HAZARDOUS_H
 #define HAZARDOUS_H
 
-class Hazardous : UnitDecorator {
+#include "UnitDecorator.h"
+#include <string>
 
-
+class Hazardous : public UnitDecorator {
 public:
-	double getWeight();
-
-	string inspect();
+    Hazardous(Unit* u) : UnitDecorator(u) {}
+    double getWeight() const override;
+    string inspect() override;
 };
 
 #endif
