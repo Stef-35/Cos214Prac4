@@ -203,7 +203,7 @@ int main() {
     Palette* activePalette = nullptr;
 
     int choice = 0;
-    while (choice != 7){
+    while (choice != 8){
         cout << "\n     TASKFORGE LOGISTICS CLI SYSTEM      \n\n";
         cout << " 1. Create & Attach Palette to Root Container\n";
         cout << " 2. Add Decorated Item to Active Palette\n";
@@ -211,8 +211,9 @@ int main() {
         cout << " 4. Traverse Hierachy (Breadth-First Search)\n";
         cout << " 5. Inspect Active Palette (Filter Faulty)\n";
         cout << " 6. Advance Active Palette State\n";
-        cout << " 7. Exit System\n";
-        cout << "Select Choice (1-7): ";
+        cout << " 7. Inspect Item Drop State (Change Repairable Status)\n";
+        cout << " 8. Exit System\n";
+        cout << "Select Choice (1-8): ";
 
         if (!(cin >> choice)){
             cin.clear();
@@ -263,7 +264,18 @@ int main() {
 
                     if (decChoice == 1) item = new Fragile(item);
                     else if (decChoice == 2) item = new Hazardous(item);
-                    else if (decChoice == 3) item = new Faulty(item);
+                    else if (decChoice == 3) {
+                        char repairInput;
+                        cout << "  Is this faulty item repairable? (y/n): ";
+                        cin >> repairInput;
+
+                        bool repairable = (repairInput == 'y' || repairInput == 'Y');
+                        item = new Faulty(item);
+
+                        item->setState(new Dropped(repairable));
+                        cout << "  >> Item tagged as Faulty with repairable = " 
+                             << (repairable ? "true" : "false") << "\n";
+                    }
                 }
                 activePalette->add(item);
                 cout << ">> Item " << id << " added to active palette!\n";
@@ -318,8 +330,36 @@ int main() {
                 activePalette->advance();
                 cout << "State after advance: " << activePalette->getStatus() << "\n";
                 break;
+            } 
+            case 7: {
+                string id;
+                double weight;
+                char repairInput;
+
+                cout << "\n     Interactive Standalone Item State Test      \n";
+                cout << "Enter Item ID: "; cin >> id;
+                cout << "Enter Item Weight: "; cin >> weight;
+
+                Item* testItem = new Item(weight, id);
+                cout << "Initial Status: " << testItem->getStatus() << "\n";
+
+                cout << "Should this dropped item be set as repairable? (y/n): ";
+                cin >> repairInput;
+
+                bool isRepairable = (repairInput == 'y' || repairInput == 'Y');
+                testItem->setState(new Dropped(isRepairable));
+
+                cout << "Current State: " << testItem->getStatus() 
+                     << " (Repairable: " << (isRepairable ? "true" : "false") << ")\n";
+
+                cout << "Advancing state...\n";
+                testItem->advance(); 
+                cout << "State after advance: " << testItem->getStatus() << "\n";
+
+                delete testItem;
+                break;
             }
-            case 7:
+            case 8:
                 cout << "Exiting TaskForge system...\n";
                 break; 
             default:
